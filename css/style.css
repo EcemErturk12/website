@@ -1,0 +1,87 @@
+/* Zentrale Farb / Schriftart / Stilvorgaben die von Bootstrap verwendet werden */
+html {
+  /* Grundfarben */
+  --bs-body-bg: #ffffff;
+  --bs-body-color: #212529;
+  --text-on-dark:#ffffff;
+
+  /* Akzentfarben */
+  --bs-primary: #0055aa;
+  --bs-secondary: #6c757d;
+  --bs-heading-color: #111111;
+
+  /* Schriftart */
+  --bs-body-font-family: sans-serif;
+
+  /* Ränder */
+  --bs-border-color: #dee2e6;
+  --bs-border-width: 0.1em;
+
+  /* Komponenten */
+  --bs-navbar-bg: var(--bs-primary);
+  --bs-navbar-color: var(--text-on-dark);
+}
+
+/* Spezifische Vorgaben für bestimmte Elemente. */
+.navbar-dark {
+  padding: 1cm !important;
+  background: #A8FFE9 !important;
+}
+.navbar .nav-link {
+  font-size: 1.1rem;
+  margin-left: 1rem;
+}
+.navbar-brand {
+  height: 10px;  
+  width: auto;
+}
+
+.col {
+  text-align: center;
+}
+.img {
+  padding-top: 1.5rem;
+
+}
+.navbar .container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin-left: -70px;
+}
+.card {
+  margin: 4rem 0 4rem 0;
+}
+
+.footer {
+  margin-top: 4rem;
+}
+
+.h1 {
+  text-align:center
+}
+.carousel-item {
+  height: 100vh;
+  object-fit: cover;
+}
+nav a {
+  color:var(--text-on-dark)
+}
+
+/* Button-Links in primärer Akzentfarbe und sekundärer bei Hover*/
+a.btn {
+  float: inline-end;
+  background-color: var(--bs-primary);
+  color:var(--text-on-dark);
+}
+
+a.btn:hover, a.btn:focus {
+  background-color: var(--bs-secondary);
+  color:var(--text-on-dark);
+}
+body { 
+  background:  #C5A3FF !important;
+}
