@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum - AstroSync</title>
+    <style>
+        /* GENEL AYARLAR */
+        body {
+            /* PDF'teki arka plan rengine yakın bir ton */
+            background-color: #FDFBF7; 
+            font-family: 'Arial', sans-serif; /* Görseldeki gibi temiz bir font */
+            color: #1a1a1a;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        /* ARKA PLAN DALGALARI (Opsiyonel) */
+        /* Eğer elinde görseldeki dalgalı arka plan resmi varsa, 
+           aşağıdaki satırı aktif edip resim yolunu yazabilirsin. */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Resim dosyası varsa: url('arka_plan_resmi.png') */
+            background-image: url('bg-waves.png');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        /* BAŞLIKLAR */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        /* METİN VE LİNKLER */
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        a {
+            color: #6fbdb3; /* Görseldeki yeşil/turkuaz link rengi */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #C5A3FF; /* PDF'teki Galaxy Purple rengi hover efekti için */
+        }
+
+        /* DÜZENLEYİCİ KUTUSU */
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .names {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .course-info {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Impressum</h1>
+
+        <section>
+            <h2>Autor*innen</h2>
+            <p class="names">
+                Ayşe Ecem Ertürk, Furkan Altan, Duygu Doğru
+            </p>
+            <p class="course-info">
+                Übungsaufgabe im Kurs "Grundlagen der Medieninformatik 1"
+            </p>
+        </section>
+
+        <section>
+            <h2>Veranstalter</h2>
+            <p>
+                Prof. Dr.-Ing. Udo Frese<br>
+                Universität Bremen<br>
+                Enrique-Schmidt-Str. 5<br>
+                28359 Bremen<br>
+                <a href="mailto:ufrese@uni-bremen.de">ufrese@uni-bremen.de</a>
+            </p>
+        </section>
+
+        <section>
+            <h2>Übergeordnete Website</h2>
+            <p>
+                <a href="https://www.uni-bremen.de/impressum" target="_blank">Impressum der Universität Bremen</a>
+            </p>
+   </section>
+
+        <div style="margin-top: 40px; text-align: center; display: flex; justify-content: center; gap: 20px;">
+            <a href="faq.html" style="font-weight: bold;">FAQ ansehen</a>
+            <span style="color: #ccc;">|</span>
+            <a href="anmelden.html" style="font-weight: bold; color: #FFA8D7;">Jetzt Registrieren</a>
+        </div>
+        </div> </body>
+</html>
