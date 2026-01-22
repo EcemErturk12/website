@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anmelden - AstroSync</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
     <style>
         /* GENEL AYARLAR */
         body {
@@ -119,10 +122,95 @@
             color: #999;
             margin-top: 5px;
         }
+
+        /* Responsive düzenlemeler */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .register-container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding: 5px;
+            }
+            
+            .register-container {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
-
+<nav class="navbar navbar-expand-lg" style="background-color: #700919;" data-bs-theme="light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <img src="img/logo.png" alt="AstroSync Logo" class="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="radiospot.html">Radio Spot</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="faq.html">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-light" href="anmelden.html">Einloggen</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="ttsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            🔊 Lesen
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="ttsDropdown" style="min-width: 280px;">
+                            <li class="mb-2">
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-primary flex-fill" id="playBtn" onclick="toggleSpeech()">
+                                        ▶️ Oynat
+                                    </button>
+                                    <button class="btn btn-sm btn-warning flex-fill" id="pauseBtn" onclick="pauseSpeech()" style="display:none;">
+                                        ⏸️ Duraklat
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" onclick="stopSpeech()">
+                                        ⏹️ Durdur
+                                    </button>
+                                </div>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li class="mb-2">
+                                <label class="form-label small">Hız: <span id="rateValue">1.0</span>x</label>
+                                <input type="range" class="form-range" id="rateSlider" min="0.5" max="2" step="0.1" value="1" oninput="updateRate(this.value)">
+                            </li>
+                            <li class="mb-2">
+                                <label class="form-label small">Ton: <span id="pitchValue">1.0</span></label>
+                                <input type="range" class="form-range" id="pitchSlider" min="0.5" max="2" step="0.1" value="1" oninput="updatePitch(this.value)">
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
     <div class="register-container">
         <h1>Werde Teil des Kosmos</h1>
         
@@ -191,6 +279,125 @@
             <a href="faq.html">FAQ</a>
         </div>
     </div>
+<script>
+let speechSynthesis = window.speechSynthesis;
+let currentUtterance = null;
+let isPaused = false;
+let speechRate = 1.0;
+let speechPitch = 1.0;
 
+function getMainContent() {
+  const mainContent = [];
+  
+  // Başlık
+  const h1 = document.querySelector('h1');
+  if (h1 && h1.textContent.trim()) {
+    mainContent.push(h1.textContent.trim());
+  }
+  
+  // Form label'ları (sadece label'lar, input değerleri değil)
+  const labels = document.querySelectorAll('label');
+  labels.forEach(label => {
+    const text = label.textContent.trim();
+    if (text && !text.includes('*')) {
+      mainContent.push(text);
+    }
+  });
+  
+  return mainContent.join('. ');
+}
+
+function toggleSpeech() {
+  if (speechSynthesis.speaking && !isPaused) {
+    pauseSpeech();
+  } else if (isPaused) {
+    resumeSpeech();
+  } else {
+    startSpeech();
+  }
+}
+
+function startSpeech() {
+  const text = getMainContent();
+  
+  if (!text) {
+    alert('Okunacak içerik bulunamadı.');
+    return;
+  }
+  
+  speechSynthesis.cancel();
+  
+  currentUtterance = new SpeechSynthesisUtterance(text);
+  currentUtterance.lang = "de-DE";
+  currentUtterance.rate = speechRate;
+  currentUtterance.pitch = speechPitch;
+  
+  currentUtterance.onend = function() {
+    document.getElementById('playBtn').style.display = 'inline-block';
+    document.getElementById('pauseBtn').style.display = 'none';
+    isPaused = false;
+  };
+  
+  currentUtterance.onerror = function(event) {
+    console.error('Speech synthesis error:', event);
+    alert('Sesli okuma hatası oluştu.');
+  };
+  
+  speechSynthesis.speak(currentUtterance);
+  document.getElementById('playBtn').style.display = 'none';
+  document.getElementById('pauseBtn').style.display = 'inline-block';
+  isPaused = false;
+}
+
+function pauseSpeech() {
+  if (speechSynthesis.speaking) {
+    speechSynthesis.pause();
+    isPaused = true;
+    document.getElementById('playBtn').style.display = 'inline-block';
+    document.getElementById('pauseBtn').style.display = 'none';
+  }
+}
+
+function resumeSpeech() {
+  if (isPaused) {
+    speechSynthesis.resume();
+    isPaused = false;
+    document.getElementById('playBtn').style.display = 'none';
+    document.getElementById('pauseBtn').style.display = 'inline-block';
+  }
+}
+
+function stopSpeech() {
+  speechSynthesis.cancel();
+  isPaused = false;
+  document.getElementById('playBtn').style.display = 'inline-block';
+  document.getElementById('pauseBtn').style.display = 'none';
+  if (currentUtterance) {
+    currentUtterance = null;
+  }
+}
+
+function updateRate(value) {
+  speechRate = parseFloat(value);
+  document.getElementById('rateValue').textContent = value;
+  if (speechSynthesis.speaking && currentUtterance) {
+    stopSpeech();
+    setTimeout(startSpeech, 100);
+  }
+}
+
+function updatePitch(value) {
+  speechPitch = parseFloat(value);
+  document.getElementById('pitchValue').textContent = value;
+  if (speechSynthesis.speaking && currentUtterance) {
+    stopSpeech();
+    setTimeout(startSpeech, 100);
+  }
+}
+
+window.addEventListener('beforeunload', function() {
+  speechSynthesis.cancel();
+});
+</script>
 </body>
 </html>
