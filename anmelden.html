@@ -7,25 +7,31 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
+    <div id="navbar"></div>
+    <main>
+    </main>
+    <div id="footer"></div>
     <div class="register-wrapper">
         <div class="register-container">
             <h1 style="text-align: center; color: #57575F; margin-bottom: 30px;">Werde Teil des Kosmos</h1>
-            
+
             <form action="#" method="post">
                 <div class="form-group">
                     <label class="form-label" for="username">Benutzername</label>
-                    <input class="form-input" type="text" id="username" name="username" placeholder="z.B. GalaxyTraveler" required>
+                    <input class="form-input" type="text" id="username" name="username"
+                        placeholder="z.B. GalaxyTraveler" required>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="email">E-Mail-Adresse</label>
-                    <input class="form-input" type="email" id="email" name="email" placeholder="deine@email.com" required>
+                    <input class="form-input" type="email" id="email" name="email" placeholder="deine@email.com"
+                        required>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="password">Passwort</label>
-                    <input class="form-input" type="password" id="password" name="password" placeholder="********" required>
+                    <input class="form-input" type="password" id="password" name="password" placeholder="********"
+                        required>
                 </div>
 
                 <div class="form-row">
@@ -62,7 +68,8 @@
                     </div>
                     <div class="form-col form-group">
                         <label class="form-label" for="birthplace">Geburtsort</label>
-                        <input class="form-input" type="text" id="birthplace" name="birthplace" placeholder="Stadt, Land" required>
+                        <input class="form-input" type="text" id="birthplace" name="birthplace"
+                            placeholder="Stadt, Land" required>
                     </div>
                 </div>
 
@@ -76,6 +83,12 @@
             </div>
         </div>
     </div>
-
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("navbar").innerHTML = data;
+            });
+    </script>
 </body>
 </html>

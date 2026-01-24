@@ -21,6 +21,13 @@ html {
   --bs-navbar-bg: var(--bs-primary);
   --bs-navbar-color: var(--text-on-dark);
 }
+.body {
+  background-image: url("../img/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 /* Spezifische Vorgaben für bestimmte Elemente. */
 .navbar {
@@ -109,7 +116,11 @@ html {
 }
 
 body {
-  background-color: #F0F0F3;
+  min-height: 100vh;
+  background-image: url("background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .card {
@@ -367,11 +378,6 @@ body {
    ========================================= */
 
 /* --- GLOBAL SETTINGS --- */
-body {
-    background-color: #FDFBF7;
-    font-family: 'Arial', sans-serif;
-}
-
 a {
     text-decoration: none;
     transition: color 0.3s;
