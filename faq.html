@@ -4,369 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - AstroSync</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* GENEL AYARLAR (Impressum ile uyumlu) */
-        body {
-            background-color: #FDFBF7; /* Açık krem zemin */
-            font-family: 'Arial', sans-serif;
-            color: #1a1a1a;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
-        
-        /* Navbar tam genişlikte olmalı */
-        .navbar {
-            width: 100%;
-            margin: 0;
-        }
-
-        .container {
-            max-width: 800px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .container {
-                padding: 10px;
-            }
-        }
-
-        /* BAŞLIK */
-        h1 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #57575F; /* Warm Grey 80 */
-            margin-bottom: 40px;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-                margin-bottom: 30px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            h1 {
-                font-size: 1.75rem;
-                margin-bottom: 20px;
-            }
-        }
-
-        /* SORU KUTULARI (DETAILS & SUMMARY) */
-        details {
-            background-color: white;
-            margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 10px; /* Yumuşak köşeler */
-            border-left: 5px solid #C5A3FF; /* Galaxy Purple Çizgi */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Hafif gölge */
-            transition: all 0.3s ease;
-        }
-
-        details:hover {
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-            transform: translateY(-2px); /* Üzerine gelince hafif yukarı kalkar */
-        }
-
-        /* Sorunun kendisi (Tıklanabilir başlık) */
-        summary {
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            list-style: none; /* Varsayılan ok işaretini kaldırır */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #333;
-        }
-
-        /* Özel ok işareti ekleyelim */
-        summary::after {
-            content: '+'; 
-            font-size: 1.5rem;
-            color: #FFA8D7; /* Nebula Pink */
-            font-weight: bold;
-            transition: transform 0.3s;
-        }
-
-        /* Açıldığında ok işareti dönsün */
-        details[open] summary::after {
-            transform: rotate(45deg); /* Artı işareti çarpı olur */
-        }
-
-        /* Cevap Metni */
-        .answer {
-            margin-top: 15px;
-            line-height: 1.6;
-            color: #555;
-            padding-top: 10px;
-            border-top: 1px solid #eee;
-        }
-
-        /* GERİ DÖN BUTONU */
-        .back-link {
-            display: inline-block;
-            margin-top: 30px;
-            text-decoration: none;
-            color: #57575F;
-            font-weight: bold;
-            border: 2px solid #C5A3FF;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: background 0.3s;
-        }
-
-        .back-link:hover {
-            background-color: #C5A3FF;
-            color: white;
-        }
-        
-        .nav-center {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg" style="background-color: #700919;" data-bs-theme="light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">
-            <img src="img/logo.png" alt="AstroSync Logo" class="logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="radiospot.html">Radio Spot</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="faq.html">FAQ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-outline-light" href="anmelden.html">Einloggen</a>
-                </li>
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="ttsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            🔊 Sesli Oku
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="ttsDropdown" style="min-width: 280px;">
-                            <li class="mb-2">
-                                <div class="d-flex gap-2">
-                                    <button class="btn btn-sm btn-primary flex-fill" id="playBtn" onclick="toggleSpeech()">
-                                        ▶️ Oynat
-                                    </button>
-                                    <button class="btn btn-sm btn-warning flex-fill" id="pauseBtn" onclick="pauseSpeech()" style="display:none;">
-                                        ⏸️ Duraklat
-                                    </button>
-                                    <button class="btn btn-sm btn-danger" onclick="stopSpeech()">
-                                        ⏹️ Durdur
-                                    </button>
-                                </div>
-                            </li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li class="mb-2">
-                                <label class="form-label small">Hız: <span id="rateValue">1.0</span>x</label>
-                                <input type="range" class="form-range" id="rateSlider" min="0.5" max="2" step="0.1" value="1" oninput="updateRate(this.value)">
-                            </li>
-                            <li class="mb-2">
-                                <label class="form-label small">Ton: <span id="pitchValue">1.0</span></label>
-                                <input type="range" class="form-range" id="pitchSlider" min="0.5" max="2" step="0.1" value="1" oninput="updatePitch(this.value)">
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-    <div class="container">
-        <h1>Häufig gestellte Fragen (FAQ)</h1>
+
+    <div class="faq-container">
+        <h1 class="faq-title">Häufig gestellte Fragen (FAQ)</h1>
 
         <details>
             <summary>Was genau ist AstroSync?</summary>
-            <div class="answer">
-                AstroSync ist nicht nur eine Dating-App, sondern dein kosmosweiter Begleiter. Wir verbinden Menschen (und andere Wesen) basierend auf astrologischen Mustern, Geburtsdaten und kosmischen Energien. Unser Ziel: Jemanden zu finden, der genau auf deiner Frequenz schwingt.
+            <div class="faq-answer">
+                AstroSync ist nicht nur eine Dating-App, sondern dein kosmosweiter Begleiter. Wir verbinden Menschen (und andere Wesen) basierend auf astrologischen Mustern.
             </div>
         </details>
 
         <details>
             <summary>Wie funktioniert das Matching-System?</summary>
-            <div class="answer">
-                Nachdem du deinen Geburtsort und deine Geburtszeit eingegeben hast, erstellen wir ein detailliertes Sternenprofil. Unser Algorithmus vergleicht dieses mit anderen Profilen und berücksichtigt dabei sogar aktuelle Planetentransite.
+            <div class="faq-answer">
+                Nachdem du deinen Geburtsort und deine Geburtszeit eingegeben hast, erstellen wir ein detailliertes Sternenprofil und vergleichen es mit anderen.
             </div>
         </details>
 
         <details>
             <summary>Kann ich wirklich Außerirdische daten?</summary>
-            <div class="answer">
-                Ja, absolut! Ein einzigartiges Feature von AstroSync ist die Integration von fiktiven Alien-Profilen. Das macht die Suche nach der großen Liebe (oder einem intergalaktischen Flirt) noch spannender und humorvoller.
+            <div class="faq-answer">
+                Ja, absolut! Ein einzigartiges Feature von AstroSync ist die Integration von fiktiven Alien-Profilen.
             </div>
         </details>
 
         <details>
             <summary>Was hat es mit den "Retro-Phasen" auf sich?</summary>
-            <div class="answer">
-                Wir nehmen Astrologie ernst. In bestimmten rückläufigen Phasen (wie bei Merkur im Retrograd) können Matches pausiert werden, um Missverständnisse zu vermeiden, bis die kosmischen Energien wieder günstiger stehen.
+            <div class="faq-answer">
+                In bestimmten rückläufigen Phasen (wie bei Merkur im Retrograd) können Matches pausiert werden, um Missverständnisse zu vermeiden.
             </div>
         </details>
 
         <details>
             <summary>Kann ich Dates auf anderen Planeten planen?</summary>
-            <div class="answer">
-                Definitiv! Wenn du ein Match hast, könnt ihr gemeinsam virtuelle Reiseziele auswählen – egal ob ein gemütliches Café auf der Erde oder ein Ausflug zu den Ringen des Saturns.
+            <div class="faq-answer">
+                Definitiv! Ihr könnt gemeinsam virtuelle Reiseziele auswählen – egal ob auf der Erde oder den Ringen des Saturns.
             </div>
         </details>
 
-        <div class="nav-center">
-            <a href="impressum.html" class="back-link">Zum Impressum</a>
+        <div style="text-align: center; margin-bottom: 20px;">
+            <a href="impressum.html" class="back-link-btn">Zum Impressum</a>
+            <br><br>
+            <a href="index.html" style="color:#666; font-size: 0.9rem;">Zurück zur Startseite</a>
         </div>
     </div>
-<script>
-let speechSynthesis = window.speechSynthesis;
-let currentUtterance = null;
-let isPaused = false;
-let speechRate = 1.0;
-let speechPitch = 1.0;
 
-function getMainContent() {
-  const mainContent = [];
-  
-  // Başlık
-  const h1 = document.querySelector('h1');
-  if (h1 && h1.textContent.trim()) {
-    mainContent.push(h1.textContent.trim());
-  }
-  
-  // Tüm details içeriği (summary ve answer)
-  const details = document.querySelectorAll('details');
-  details.forEach(detail => {
-    const summary = detail.querySelector('summary');
-    const answer = detail.querySelector('.answer');
-    
-    if (summary && summary.textContent.trim()) {
-      mainContent.push(summary.textContent.trim());
-    }
-    
-    if (answer && answer.textContent.trim()) {
-      mainContent.push(answer.textContent.trim());
-    }
-  });
-  
-  return mainContent.join('. ');
-}
-
-function toggleSpeech() {
-  if (speechSynthesis.speaking && !isPaused) {
-    pauseSpeech();
-  } else if (isPaused) {
-    resumeSpeech();
-  } else {
-    startSpeech();
-  }
-}
-
-function startSpeech() {
-  const text = getMainContent();
-  
-  if (!text) {
-    alert('Okunacak içerik bulunamadı.');
-    return;
-  }
-  
-  speechSynthesis.cancel();
-  
-  currentUtterance = new SpeechSynthesisUtterance(text);
-  currentUtterance.lang = "de-DE";
-  currentUtterance.rate = speechRate;
-  currentUtterance.pitch = speechPitch;
-  
-  currentUtterance.onend = function() {
-    document.getElementById('playBtn').style.display = 'inline-block';
-    document.getElementById('pauseBtn').style.display = 'none';
-    isPaused = false;
-  };
-  
-  currentUtterance.onerror = function(event) {
-    console.error('Speech synthesis error:', event);
-    alert('Sesli okuma hatası oluştu.');
-  };
-  
-  speechSynthesis.speak(currentUtterance);
-  document.getElementById('playBtn').style.display = 'none';
-  document.getElementById('pauseBtn').style.display = 'inline-block';
-  isPaused = false;
-}
-
-function pauseSpeech() {
-  if (speechSynthesis.speaking) {
-    speechSynthesis.pause();
-    isPaused = true;
-    document.getElementById('playBtn').style.display = 'inline-block';
-    document.getElementById('pauseBtn').style.display = 'none';
-  }
-}
-
-function resumeSpeech() {
-  if (isPaused) {
-    speechSynthesis.resume();
-    isPaused = false;
-    document.getElementById('playBtn').style.display = 'none';
-    document.getElementById('pauseBtn').style.display = 'inline-block';
-  }
-}
-
-function stopSpeech() {
-  speechSynthesis.cancel();
-  isPaused = false;
-  document.getElementById('playBtn').style.display = 'inline-block';
-  document.getElementById('pauseBtn').style.display = 'none';
-  if (currentUtterance) {
-    currentUtterance = null;
-  }
-}
-
-function updateRate(value) {
-  speechRate = parseFloat(value);
-  document.getElementById('rateValue').textContent = value;
-  if (speechSynthesis.speaking && currentUtterance) {
-    stopSpeech();
-    setTimeout(startSpeech, 100);
-  }
-}
-
-function updatePitch(value) {
-  speechPitch = parseFloat(value);
-  document.getElementById('pitchValue').textContent = value;
-  if (speechSynthesis.speaking && currentUtterance) {
-    stopSpeech();
-    setTimeout(startSpeech, 100);
-  }
-}
-
-window.addEventListener('beforeunload', function() {
-  speechSynthesis.cancel();
-});
-</script>
 </body>
 </html>

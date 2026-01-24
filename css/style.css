@@ -361,3 +361,225 @@ body {
             color: #C5A3FF;
             font-weight: bold;
         }
+        /* =========================================
+   ASTROSYNC PAGE STYLES
+   (Impressum, FAQ, Anmelden)
+   ========================================= */
+
+/* --- GLOBAL SETTINGS --- */
+body {
+    background-color: #FDFBF7;
+    font-family: 'Arial', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+/* --- IMPRESSUM PAGE --- */
+.impressum-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.impressum-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.impressum-container h2 {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.impressum-names {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.course-info {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* --- FAQ PAGE --- */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+.faq-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #57575F;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+details {
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 5px solid #C5A3FF;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+details:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+summary {
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+}
+
+summary::after {
+    content: '+'; 
+    font-size: 1.5rem;
+    color: #FFA8D7;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+details[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    margin-top: 15px;
+    line-height: 1.6;
+    color: #555;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.back-link-btn {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: #57575F;
+    font-weight: bold;
+    border: 2px solid #C5A3FF;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+
+.back-link-btn:hover {
+    background-color: #C5A3FF;
+    color: white;
+}
+
+/* --- ANMELDEN (REGISTER) PAGE --- */
+.register-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.register-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(197, 163, 255, 0.3);
+    width: 100%;
+    max-width: 500px;
+    border-top: 5px solid #C5A3FF;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.form-input, .form-select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    font-family: inherit;
+}
+
+.form-input:focus, .form-select:focus {
+    outline: none;
+    border-color: #FFA8D7;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-col {
+    flex: 1;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #C5A3FF;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #b085f5;
+    transform: scale(1.02);
+}
+
+.footer-links {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.footer-links a {
+    color: #57575F;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    color: #FFA8D7;
+}
+
+.note {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 5px;
+}
