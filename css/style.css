@@ -620,3 +620,23 @@ details[open] summary::after {
 .is-hidden {
   display: none !important;
 }
+.register-page-bg {
+    background-image: url('../img/background.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.register-container {
+    background-color: rgba(255, 255, 255, 0.90);
+    backdrop-filter: blur(5px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    border-top: 5px solid #C5A3FF;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
