@@ -18,70 +18,27 @@
   <body>
     <!-- Header mit Navigation Bar -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-custom">
-            <div class="container-fluid">
-                <!-- LOGO -->
-                <a class="navbar-brand" href="index.html">
-                    <img src="img/logo.png" alt="AstroSync Logo" class="logo">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="radiospot.html">Radio Spot</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="faq.html">FAQ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-outline-light" href="anmelden.html">Einloggen</a>
-                        </li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="ttsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                 🔊 Text Vorlesen
-                              </button>
-                                <ul class="dropdown-menu dropdown-menu-end p-3 dropdown-custom">
-                                    <li class="mb-2">
-                                        <div class="d-flex gap-2">
-                                            <button class="btn btn-sm btn-primary flex-fill" id="playBtn" onclick="toggleSpeech()">
-                                                ▶️ Abspielen
-                                            </button>
-                                            <button class="btn btn-sm btn-warning flex-fill pause-btn" id="pauseBtn" onclick="pauseSpeech()">
-                                               ⏸️ Pause
-                                             </button>
-                                            <button class="btn btn-sm btn-danger" onclick="stopSpeech()">
-                                                ⏹️ Stopp
-                                            </button>
-                                        </div>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li class="mb-2">
-                                        <label class="form-label small">Geschwindigkeit: <span id="rateValue">1.0</span>x</label>
-                                        <input type="range" class="form-range" id="rateSlider" min="0.5" max="2" step="0.1" value="1" oninput="updateRate(this.value)">
-                                    </li>
-                                    <li class="mb-2">
-                                        <label class="form-label small">Tonhöhe: <span id="pitchValue">1.0</span></label>
-                                        <input type="range" class="form-range" id="pitchSlider" min="0.5" max="2" step="0.1" value="1" oninput="updatePitch(this.value)">
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+            <nav class="navbar navbar-dark bg-dark">
+            <!-- Navbar content -->
+             <a class="navbar-brand" href="#">
+             <img src="img/logo.png" alt="AstroSync Logo" height="150">
+             </a>
+             <ul class="navbar-nav ms-auto">
+             <li class="nav-item">
+             <a class="nav-link" href="index.html">Home</a>
+             </li>
+             <li class="nav-item">
+             <a class="nav-link" href="radiospot.html">Radiospot</a>
+             </li>
+             </ul>
 
+            </nav>
+        </header>
 
+    <main>
         <main class="container my-5">
   <div class="row justify-content-center">
-    <div class="col-12 col-md-8 text-center">
+    <div class="col-md-8 text-center">
 
       <h1>Unser Radiospot!</h1>
 
@@ -95,7 +52,7 @@
 
      <div class="d-flex justify-content-between align-items-center mb-2">
       <h2 class="h6 mb-0">Jetzt anhören</h2>
-      <span class="badge text-bg-secondary">29s</span>
+      <span class="badge text-bg-secondary"></span>
       </div>
 
      <audio controls class="w-100">
@@ -110,7 +67,7 @@
      </div>
      </section>
      <button 
-    class="btn btn-outline-primary btn-sm mt-3 transcript-btn"
+    class="btn btn-outline-primary btn sm mt-3"
     type="button"
     data-bs-toggle="collapse"
     data-bs-target="#transcriptCollapse"
@@ -171,134 +128,5 @@
 
     <footer>
     </footer>
-<script>
-let speechSynthesis = window.speechSynthesis;
-let currentUtterance = null;
-let isPaused = false;
-let speechRate = 1.0;
-let speechPitch = 1.0;
-
-function getMainContent() {
-  const mainContent = [];
-  
-  // Başlık ve lead
-  const h1 = document.querySelector('h1');
-  const lead = document.querySelector('.lead');
-  
-  if (h1 && h1.textContent.trim()) {
-    mainContent.push(h1.textContent.trim());
-  }
-  
-  if (lead && lead.textContent.trim()) {
-    mainContent.push(lead.textContent.trim());
-  }
-  
-  // Transcript içeriği
-  const transcriptBox = document.querySelector('.transcript-box');
-  if (transcriptBox) {
-    const paragraphs = transcriptBox.querySelectorAll('p');
-    paragraphs.forEach(p => {
-      const text = p.textContent.trim();
-      if (text && !text.includes('Soundeffekt') && !text.includes('Hintergrundmusik')) {
-        mainContent.push(text);
-      }
-    });
-  }
-  
-  return mainContent.join('. ');
-}
-
-function toggleSpeech() {
-  if (speechSynthesis.speaking && !isPaused) {
-    pauseSpeech();
-  } else if (isPaused) {
-    resumeSpeech();
-  } else {
-    startSpeech();
-  }
-}
-
-function startSpeech() {
-  const text = getMainContent();
-  
-  if (!text) {
-    alert('Es wurde kein Text zum Vorlesen gefunden.');
-    return;
-  }
-  
-  speechSynthesis.cancel();
-  
-  currentUtterance = new SpeechSynthesisUtterance(text);
-  currentUtterance.lang = "de-DE";
-  currentUtterance.rate = speechRate;
-  currentUtterance.pitch = speechPitch;
-  
-  currentUtterance.onend = function() {
-    document.getElementById('playBtn').style.display = 'inline-block';
-    document.getElementById('pauseBtn').style.display = 'none';
-    isPaused = false;
-  };
-  
-  currentUtterance.onerror = function(event) {
-    console.error('Speech synthesis error:', event);
-    alert('Beim Vorlesen ist ein technischer Fehler aufgetreten.');
-  };
-  
-  speechSynthesis.speak(currentUtterance);
-  document.getElementById('playBtn').style.display = 'none';
-  document.getElementById('pauseBtn').style.display = 'inline-block';
-  isPaused = false;
-}
-
-function pauseSpeech() {
-  if (speechSynthesis.speaking) {
-    speechSynthesis.pause();
-    isPaused = true;
-    document.getElementById('playBtn').style.display = 'inline-block';
-    document.getElementById('pauseBtn').style.display = 'none';
-  }
-}
-
-function resumeSpeech() {
-  if (isPaused) {
-    speechSynthesis.resume();
-    isPaused = false;
-    document.getElementById('playBtn').style.display = 'none';
-    document.getElementById('pauseBtn').style.display = 'inline-block';
-  }
-}
-
-function stopSpeech() {
-  speechSynthesis.cancel();
-  isPaused = false;
-  document.getElementById('playBtn').style.display = 'inline-block';
-  document.getElementById('pauseBtn').style.display = 'none';
-  if (currentUtterance) {
-    currentUtterance = null;
-  }
-}
-
-function updateRate(value) {
-  speechRate = parseFloat(value);
-  document.getElementById('rateValue').textContent = value;
-  if (speechSynthesis.speaking && currentUtterance) {
-    stopSpeech();
-    setTimeout(startSpeech, 100);
-  }
-}
-
-function updatePitch(value) {
-  speechPitch = parseFloat(value);
-  document.getElementById('pitchValue').textContent = value;
-  if (speechSynthesis.speaking && currentUtterance) {
-    stopSpeech();
-    setTimeout(startSpeech, 100);
-  }
-}
-
-window.addEventListener('beforeunload', function() {
-  speechSynthesis.cancel();
-});
-</script>
   </body>
 </html>

@@ -4,52 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - AstroSync</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* GENEL AYARLAR (Impressum ile uyumlu) */
+        body {
+            background-color: #FDFBF7; /* Açık krem zemin */
+            font-family: 'Arial', sans-serif;
+            color: #1a1a1a;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* BAŞLIK */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #57575F; /* Warm Grey 80 */
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        /* SORU KUTULARI (DETAILS & SUMMARY) */
+        details {
+            background-color: white;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px; /* Yumuşak köşeler */
+            border-left: 5px solid #C5A3FF; /* Galaxy Purple Çizgi */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Hafif gölge */
+            transition: all 0.3s ease;
+        }
+
+        details:hover {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px); /* Üzerine gelince hafif yukarı kalkar */
+        }
+
+        /* Sorunun kendisi (Tıklanabilir başlık) */
+        summary {
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            list-style: none; /* Varsayılan ok işaretini kaldırır */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #333;
+        }
+
+        /* Özel ok işareti ekleyelim */
+        summary::after {
+            content: '+'; 
+            font-size: 1.5rem;
+            color: #FFA8D7; /* Nebula Pink */
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        /* Açıldığında ok işareti dönsün */
+        details[open] summary::after {
+            transform: rotate(45deg); /* Artı işareti çarpı olur */
+        }
+
+        /* Cevap Metni */
+        .answer {
+            margin-top: 15px;
+            line-height: 1.6;
+            color: #555;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        /* GERİ DÖN BUTONU */
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #57575F;
+            font-weight: bold;
+            border: 2px solid #C5A3FF;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #C5A3FF;
+            color: white;
+        }
+        
+        .nav-center {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+    </style>
 </head>
 <body>
 
-    <div class="faq-container">
-        <h1 class="faq-title">Häufig gestellte Fragen (FAQ)</h1>
+    <div class="container">
+        <h1>Häufig gestellte Fragen (FAQ)</h1>
 
         <details>
             <summary>Was genau ist AstroSync?</summary>
-            <div class="faq-answer">
-                AstroSync ist nicht nur eine Dating-App, sondern dein kosmosweiter Begleiter. Wir verbinden Menschen (und andere Wesen) basierend auf astrologischen Mustern.
+            <div class="answer">
+                AstroSync ist nicht nur eine Dating-App, sondern dein kosmosweiter Begleiter. Wir verbinden Menschen (und andere Wesen) basierend auf astrologischen Mustern, Geburtsdaten und kosmischen Energien. Unser Ziel: Jemanden zu finden, der genau auf deiner Frequenz schwingt.
             </div>
         </details>
 
         <details>
             <summary>Wie funktioniert das Matching-System?</summary>
-            <div class="faq-answer">
-                Nachdem du deinen Geburtsort und deine Geburtszeit eingegeben hast, erstellen wir ein detailliertes Sternenprofil und vergleichen es mit anderen.
+            <div class="answer">
+                Nachdem du deinen Geburtsort und deine Geburtszeit eingegeben hast, erstellen wir ein detailliertes Sternenprofil. Unser Algorithmus vergleicht dieses mit anderen Profilen und berücksichtigt dabei sogar aktuelle Planetentransite.
             </div>
         </details>
 
         <details>
             <summary>Kann ich wirklich Außerirdische daten?</summary>
-            <div class="faq-answer">
-                Ja, absolut! Ein einzigartiges Feature von AstroSync ist die Integration von fiktiven Alien-Profilen.
+            <div class="answer">
+                Ja, absolut! Ein einzigartiges Feature von AstroSync ist die Integration von fiktiven Alien-Profilen. Das macht die Suche nach der großen Liebe (oder einem intergalaktischen Flirt) noch spannender und humorvoller.
             </div>
         </details>
 
         <details>
             <summary>Was hat es mit den "Retro-Phasen" auf sich?</summary>
-            <div class="faq-answer">
-                In bestimmten rückläufigen Phasen (wie bei Merkur im Retrograd) können Matches pausiert werden, um Missverständnisse zu vermeiden.
+            <div class="answer">
+                Wir nehmen Astrologie ernst. In bestimmten rückläufigen Phasen (wie bei Merkur im Retrograd) können Matches pausiert werden, um Missverständnisse zu vermeiden, bis die kosmischen Energien wieder günstiger stehen.
             </div>
         </details>
 
         <details>
             <summary>Kann ich Dates auf anderen Planeten planen?</summary>
-            <div class="faq-answer">
-                Definitiv! Ihr könnt gemeinsam virtuelle Reiseziele auswählen – egal ob auf der Erde oder den Ringen des Saturns.
+            <div class="answer">
+                Definitiv! Wenn du ein Match hast, könnt ihr gemeinsam virtuelle Reiseziele auswählen – egal ob ein gemütliches Café auf der Erde oder ein Ausflug zu den Ringen des Saturns.
             </div>
         </details>
 
-        <div style="text-align: center; margin-bottom: 20px;">
-            <a href="impressum.html" class="back-link-btn">Zum Impressum</a>
-            <br><br>
-            <a href="index.html" style="color:#666; font-size: 0.9rem;">Zurück zur Startseite</a>
+        <div class="nav-center">
+            <a href="impressum.html" class="back-link">Zum Impressum</a>
         </div>
     </div>
 
