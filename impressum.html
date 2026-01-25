@@ -1,105 +1,112 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impressum - AstroSync</title>
-    <style>
-        /* GENEL AYARLAR */
-        body {
-            /* PDF'teki arka plan rengine yakın bir ton */
-            background-color: #FDFBF7; 
-            font-family: 'Arial', sans-serif; /* Görseldeki gibi temiz bir font */
-            color: #1a1a1a;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-
-        /* ARKA PLAN DALGALARI (Opsiyonel) */
-        /* Eğer elinde görseldeki dalgalı arka plan resmi varsa, 
-           aşağıdaki satırı aktif edip resim yolunu yazabilirsin. */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Resim dosyası varsa: url('arka_plan_resmi.png') */
-            background-image: url('bg-waves.png');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-            opacity: 0.8;
-        }
-
-        /* BAŞLIKLAR */
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-
-        /* METİN VE LİNKLER */
-        p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        a {
-            color: #6fbdb3; /* Görseldeki yeşil/turkuaz link rengi */
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: #C5A3FF; /* PDF'teki Galaxy Purple rengi hover efekti için */
-        }
-
-        /* DÜZENLEYİCİ KUTUSU */
-        .container {
-            max-width: 800px;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .names {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .course-info {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
 
-    <div class="container">
+<body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #700919;" data-bs-theme="light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.png" alt="AstroSync Logo" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="radiospot.html">Radio Spot</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="anmelden.html">Einloggen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="swipe.html">App Preview</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="ttsDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                🔊 Text Vorlesen
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="ttsDropdown"
+                                style="min-width: 280px;">
+                                <li class="mb-2">
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-primary flex-fill" id="playBtn"
+                                            onclick="toggleSpeech()">
+                                            ▶️ Abspielen
+                                        </button>
+                                        <button class="btn btn-sm btn-warning flex-fill" id="pauseBtn"
+                                            onclick="pauseSpeech()" style="display:none;">
+                                            ⏸️ Pause
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" onclick="stopSpeech()">
+                                            ⏹️ Stopp
+                                        </button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="mb-2">
+                                    <label class="form-label small">Geschwindigkeit: <span
+                                            id="rateValue">1.0</span>x</label>
+                                    <input type="range" class="form-range" id="rateSlider" min="0.5" max="2" step="0.1"
+                                        value="1" oninput="updateRate(this.value)">
+                                </li>
+                                <li class="mb-2">
+                                    <label class="form-label small">Tonhöhe: <span id="pitchValue">1.0</span></label>
+                                    <input type="range" class="form-range" id="pitchSlider" min="0.5" max="2" step="0.1"
+                                        value="1" oninput="updatePitch(this.value)">
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+                const currentPage = window.location.pathname.split('/').pop();
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === currentPage) {
+                        link.classList.add('active');
+                        link.setAttribute('aria-current', 'page');
+                    } else {
+                        link.classList.remove('active');
+                        link.removeAttribute('aria-current');
+                    }
+                });
+            })
+            .catch(error => console.error('Error loading navbar:', error));
+    </script>
+
+    <div class="impressum-container">
         <h1>Impressum</h1>
 
         <section>
             <h2>Autor*innen</h2>
-            <p class="names">
+            <p class="impressum-names">
                 Ayşe Ecem Ertürk, Furkan Altan, Duygu Doğru
             </p>
             <p class="course-info">
@@ -114,21 +121,47 @@
                 Universität Bremen<br>
                 Enrique-Schmidt-Str. 5<br>
                 28359 Bremen<br>
-                <a href="mailto:ufrese@uni-bremen.de">ufrese@uni-bremen.de</a>
+                <a href="mailto:ufrese@uni-bremen.de" style="color: #6fbdb3;">ufrese@uni-bremen.de</a>
             </p>
         </section>
 
         <section>
             <h2>Übergeordnete Website</h2>
             <p>
-                <a href="https://www.uni-bremen.de/impressum" target="_blank">Impressum der Universität Bremen</a>
+                <a href="https://www.uni-bremen.de/impressum" target="_blank" style="color: #6fbdb3;">Impressum der
+                    Universität Bremen</a>
             </p>
-   </section>
+        </section>
 
         <div style="margin-top: 40px; text-align: center; display: flex; justify-content: center; gap: 20px;">
-            <a href="faq.html" style="font-weight: bold;">FAQ ansehen</a>
+            <a href="index.html" style="font-weight: bold; color: #57575F;">Home</a>
             <span style="color: #ccc;">|</span>
-            <a href="anmelden.html" style="font-weight: bold; color: #FFA8D7;">Jetzt Registrieren</a>
+            <a href="faq.html" style="font-weight: bold; color: #57575F;">FAQ</a>
+            <span style="color: #ccc;">|</span>
+            <a href="anmelden.html" style="font-weight: bold; color: #FFA8D7;">Anmelden</a>
         </div>
-        </div> </body>
+
+    </div>
+    <footer class="footer-nav">
+        <nav class="navbar navbar-expand">
+            <div class="container justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="impressum.html">Impressum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="quellen.html">Quellen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="swipe.html">App Preview</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </footer>
+</body>
+
 </html>

@@ -10,53 +10,136 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <title>Buchen - AstroSync</title>
 </head>
+
 <body>
-  <div id="navbar"></div>
+  <nav class="navbar navbar-expand-lg" style="background-color: #700919;" data-bs-theme="light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">
+        <img src="img/logo.png" alt="AstroSync Logo" class="logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="radiospot.html">Radio Spot</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faq.html">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light" href="anmelden.html">Einloggen</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="swipe.html">App Preview</a>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="ttsDropdown" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                🔊 Text Vorlesen
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="ttsDropdown" style="min-width: 280px;">
+                <li class="mb-2">
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-primary flex-fill" id="playBtn" onclick="toggleSpeech()">
+                      ▶️ Abspielen
+                    </button>
+                    <button class="btn btn-sm btn-warning flex-fill" id="pauseBtn" onclick="pauseSpeech()"
+                      style="display:none;">
+                      ⏸️ Pause
+                    </button>
+                    <button class="btn btn-sm btn-danger" onclick="stopSpeech()">
+                      ⏹️ Stopp
+                    </button>
+                  </div>
+                </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li class="mb-2">
+                  <label class="form-label small">Geschwindigkeit: <span id="rateValue">1.0</span>x</label>
+                  <input type="range" class="form-range" id="rateSlider" min="0.5" max="2" step="0.1" value="1"
+                    oninput="updateRate(this.value)">
+                </li>
+                <li class="mb-2">
+                  <label class="form-label small">Tonhöhe: <span id="pitchValue">1.0</span></label>
+                  <input type="range" class="form-range" id="pitchSlider" min="0.5" max="2" step="0.1" value="1"
+                    oninput="updatePitch(this.value)">
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <main>
   </main>
-  <div id="footer"></div>
   <div class="container my-4">
     <div class="row row-cols-1 row-cols-md-2 g-4">
       <div class="col">
-        <div class="card">
-          <img src="img/saturn.jpeg" class="card-img-top" alt="saturnHotel">
-          <div class="card-body">
-            <h5 class="card-title">Saturn Rings Hotel</h5>
-            <p class="card-text">Aufwachen mit Blick auf Saturns Ringe.
-              Luxus, Ruhe und ein kleines „Bin ich wirklich hier?“ Gefühl inklusive.</p>
+        <a href="saturnhotel.html" class="card-link">
+          <div class="card h-100">
+            <img src="img/saturn.jpeg" class="card-img-top" alt="saturnhotel.html">
+            <div class="card-body">
+              <h5 class="card-title">Saturn Rings Hotel</h5>
+              <p class="card-text">
+                Aufwachen mit Blick auf Saturns Ringe.
+                Luxus, Ruhe und ein kleines „Bin ich wirklich hier?“ Gefühl inklusive.
+              </p>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
       <div class="col">
-        <div class="card">
-          <img src="img/moon.png" class="card-img-top" alt="moonHotel">
-          <div class="card-body">
-            <h5 class="card-title">Luna Horizon Hotel</h5>
-            <p class="card-text">Sie sind auf dem Mond die Erde schaut zu.
-              Still, entspannt und überraschend romantisch. Kein Lärm, nur Wow.</p>
+        <a href="lunahotel.html" class="card-link">
+          <div class="card h-100">
+            <img src="img/moon.png" class="card-img-top" alt="lunahotel.html">
+            <div class="card-body">
+              <h5 class="card-title">Luna Horizon Hotel</h5>
+              <p class="card-text">
+                Sie sind auf dem Mond die Erde schaut zu.
+                Still, entspannt und überraschend romantisch. Kein Lärm, nur Wow.
+              </p>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
       <div class="col">
-        <div class="card">
-          <img src="img/marshotel.png" class="card-img-top" alt="marsHotel">
-          <div class="card-body">
-            <h5 class="card-title">Mars Dune Resort</h5>
-            <p class="card-text">Ein Mensch, ein Alien, ein Mars-Sonnenuntergang.
-              Grenzenlos, futuristisch und ziemlich legendär.</p>
+        <a href="marshotel.html" class="card-link">
+          <div class="card h-100">
+            <img src="img/marshotel.png" class="card-img-top" alt="marshotel.html">
+            <div class="card-body">
+              <h5 class="card-title">Mars Dune Resort</h5>
+              <p class="card-text">
+                Ein Mensch, ein Alien, ein Mars Sonnenuntergang.
+                Grenzenlos, futuristisch und ziemlich legendär.
+              </p>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
       <div class="col">
-        <div class="card">
-          <img src="img/space.jpeg" class="card-img-top" alt="spaceHotel">
-          <div class="card-body">
-            <h6 class="card-title">Cosmos Infinity Hotel</h6>
-            <p class="card-text">Galaxien vor dem Fenster, Champagner auf dem Tisch.
-              Das Universum läuft.Sie sitzen in der ersten Reihe.</p>
+        <a href="spacehotel.html" class="card-link">
+          <div class="card h-100">
+            <img src="img/space.jpeg" class="card-img-top" alt="spacehotel.html">
+            <div class="card-body">
+              <h5 class="card-title">Cosmos Infinity Hotel</h5>
+              <p class="card-text">
+                Galaxien vor dem Fenster, Champagner auf dem Tisch.
+                Das Universum läuft. Sie sitzen in der ersten Reihe.
+              </p>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
+
     </div>
   </div>
   <div class="row-gap"> </div>
@@ -116,136 +199,149 @@
         </div>
       </div>
     </div>
-    <script>
-      let speechSynthesis = window.speechSynthesis;
-      let currentUtterance = null;
-      let isPaused = false;
-      let speechRate = 1.0;
-      let speechPitch = 1.0;
+  </div>
+  <script>
+    let speechSynthesis = window.speechSynthesis;
+    let currentUtterance = null;
+    let isPaused = false;
+    let speechRate = 1.0;
+    let speechPitch = 1.0;
 
-      function getMainContent() {
-        const mainContent = [];
-        const cardTitles = document.querySelectorAll('.card-title, .card h6');
-        const cardTexts = document.querySelectorAll('.card-text');
+    function getMainContent() {
+      const mainContent = [];
+      const cardTitles = document.querySelectorAll('.card-title, .card h6');
+      const cardTexts = document.querySelectorAll('.card-text');
 
-        cardTitles.forEach(el => {
-          if (el.textContent.trim()) {
-            mainContent.push(el.textContent.trim());
-          }
-        });
-
-        cardTexts.forEach(el => {
-          if (el.textContent.trim()) {
-            mainContent.push(el.textContent.trim());
-          }
-        });
-        const formTitle = document.querySelector('.register-container h1');
-        if (formTitle && formTitle.textContent.trim()) {
-          mainContent.push(formTitle.textContent.trim());
+      cardTitles.forEach(el => {
+        if (el.textContent.trim()) {
+          mainContent.push(el.textContent.trim());
         }
+      });
 
-        return mainContent.join('. ');
+      cardTexts.forEach(el => {
+        if (el.textContent.trim()) {
+          mainContent.push(el.textContent.trim());
+        }
+      });
+      const formTitle = document.querySelector('.register-container h1');
+      if (formTitle && formTitle.textContent.trim()) {
+        mainContent.push(formTitle.textContent.trim());
       }
 
-      function toggleSpeech() {
-        if (speechSynthesis.speaking && !isPaused) {
-          pauseSpeech();
-        } else if (isPaused) {
-          resumeSpeech();
-        } else {
-          startSpeech();
-        }
+      return mainContent.join('. ');
+    }
+
+    function toggleSpeech() {
+      if (speechSynthesis.speaking && !isPaused) {
+        pauseSpeech();
+      } else if (isPaused) {
+        resumeSpeech();
+      } else {
+        startSpeech();
+      }
+    }
+
+    function startSpeech() {
+      const text = getMainContent();
+
+      if (!text) {
+        alert('Es wurde kein Text zum Vorlesen gefunden.');
+        return;
       }
 
-      function startSpeech() {
-        const text = getMainContent();
+      speechSynthesis.cancel();
 
-        if (!text) {
-          alert('Es wurde kein Text zum Vorlesen gefunden.');
-          return;
-        }
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      currentUtterance.lang = "de-DE";
+      currentUtterance.rate = speechRate;
+      currentUtterance.pitch = speechPitch;
 
-        speechSynthesis.cancel();
-
-        currentUtterance = new SpeechSynthesisUtterance(text);
-        currentUtterance.lang = "de-DE";
-        currentUtterance.rate = speechRate;
-        currentUtterance.pitch = speechPitch;
-
-        currentUtterance.onend = function () {
-          document.getElementById('playBtn').style.display = 'inline-block';
-          document.getElementById('pauseBtn').style.display = 'none';
-          isPaused = false;
-        };
-
-        currentUtterance.onerror = function (event) {
-          console.error('Speech synthesis error:', event);
-          alert('Beim Vorlesen ist ein technischer Fehler aufgetreten.');
-        };
-
-        speechSynthesis.speak(currentUtterance);
-        document.getElementById('playBtn').style.display = 'none';
-        document.getElementById('pauseBtn').style.display = 'inline-block';
-        isPaused = false;
-      }
-
-      function pauseSpeech() {
-        if (speechSynthesis.speaking) {
-          speechSynthesis.pause();
-          isPaused = true;
-          document.getElementById('playBtn').style.display = 'inline-block';
-          document.getElementById('pauseBtn').style.display = 'none';
-        }
-      }
-
-      function resumeSpeech() {
-        if (isPaused) {
-          speechSynthesis.resume();
-          isPaused = false;
-          document.getElementById('playBtn').style.display = 'none';
-          document.getElementById('pauseBtn').style.display = 'inline-block';
-        }
-      }
-
-      function stopSpeech() {
-        speechSynthesis.cancel();
-        isPaused = false;
+      currentUtterance.onend = function () {
         document.getElementById('playBtn').style.display = 'inline-block';
         document.getElementById('pauseBtn').style.display = 'none';
-        if (currentUtterance) {
-          currentUtterance = null;
-        }
-      }
+        isPaused = false;
+      };
 
-      function updateRate(value) {
-        speechRate = parseFloat(value);
-        document.getElementById('rateValue').textContent = value;
-        if (speechSynthesis.speaking && currentUtterance) {
-          stopSpeech();
-          setTimeout(startSpeech, 100);
-        }
-      }
+      currentUtterance.onerror = function (event) {
+        console.error('Speech synthesis error:', event);
+        alert('Beim Vorlesen ist ein technischer Fehler aufgetreten.');
+      };
 
-      function updatePitch(value) {
-        speechPitch = parseFloat(value);
-        document.getElementById('pitchValue').textContent = value;
-        if (speechSynthesis.speaking && currentUtterance) {
-          stopSpeech();
-          setTimeout(startSpeech, 100);
-        }
-      }
+      speechSynthesis.speak(currentUtterance);
+      document.getElementById('playBtn').style.display = 'none';
+      document.getElementById('pauseBtn').style.display = 'inline-block';
+      isPaused = false;
+    }
 
-      window.addEventListener('beforeunload', function () {
-        speechSynthesis.cancel();
-      });
-    </script>
-    <script>
-      fetch("navbar.html")
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("navbar").innerHTML = data;
-        });
-    </script>
+    function pauseSpeech() {
+      if (speechSynthesis.speaking) {
+        speechSynthesis.pause();
+        isPaused = true;
+        document.getElementById('playBtn').style.display = 'inline-block';
+        document.getElementById('pauseBtn').style.display = 'none';
+      }
+    }
+
+    function resumeSpeech() {
+      if (isPaused) {
+        speechSynthesis.resume();
+        isPaused = false;
+        document.getElementById('playBtn').style.display = 'none';
+        document.getElementById('pauseBtn').style.display = 'inline-block';
+      }
+    }
+
+    function stopSpeech() {
+      speechSynthesis.cancel();
+      isPaused = false;
+      document.getElementById('playBtn').style.display = 'inline-block';
+      document.getElementById('pauseBtn').style.display = 'none';
+      if (currentUtterance) {
+        currentUtterance = null;
+      }
+    }
+
+    function updateRate(value) {
+      speechRate = parseFloat(value);
+      document.getElementById('rateValue').textContent = value;
+      if (speechSynthesis.speaking && currentUtterance) {
+        stopSpeech();
+        setTimeout(startSpeech, 100);
+      }
+    }
+
+    function updatePitch(value) {
+      speechPitch = parseFloat(value);
+      document.getElementById('pitchValue').textContent = value;
+      if (speechSynthesis.speaking && currentUtterance) {
+        stopSpeech();
+        setTimeout(startSpeech, 100);
+      }
+    }
+
+    window.addEventListener('beforeunload', function () {
+      speechSynthesis.cancel();
+    });
+  </script>
 </body>
-
+  <footer class="footer-nav">
+    <nav class="navbar navbar-expand">
+      <div class="container justify-content-center">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="impressum.html">Impressum</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="quellen.html">Quellen</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faq.html">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="swipe.html">App Preview</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </footer>
 </html>
