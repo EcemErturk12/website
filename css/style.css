@@ -1,25 +1,49 @@
 /* Zentrale Farb / Schriftart / Stilvorgaben die von Bootstrap verwendet werden */
 html {
-  /* Grundfarben */
-  --bs-body-bg: #ffffff;
-  --bs-body-color: #212529;
+  /* ===============================
+     HAUPTFARBEN – Grundstimmung
+     =============================== */
+  --galaxy-purple: #C5A3FF;   
+  --nebula-pink:   #FFA8D7;   
+  --mint-orbit:    #A8FFE9;   
+
+  /* ===============================
+     AKZENTFARBEN – UI & Highlights
+     =============================== */
+  --stardust-yellow: #FFF3A1; 
+  --sky-blue:        #A9D9FF; 
+
+  /* ===============================
+     NEUTRALE FARBEN – Text & Layout
+     =============================== */
+  --warm-grey-20: #F0F0F3;   
+  --warm-grey-80: #57575F;   
+
+  /* ===============================
+     BOOTSTRAP OVERRIDES
+     =============================== */
+  --bs-body-bg: var(--warm-grey-20);
+  --bs-body-color: var(--warm-grey-80);
+
+  --bs-primary: var(--galaxy-purple);
+  --bs-secondary: var(--nebula-pink);
+
+  --bs-heading-color: var(--warm-grey-80);
   --text-on-dark: #ffffff;
 
-  /* Akzentfarben */
-  --bs-primary: #0055aa;
-  --bs-secondary: #6c757d;
-  --bs-heading-color: #111111;
+  /* ===============================
+     TYPOGRAPHY
+     =============================== */
+  --bs-body-font-family: "Harlow Solid Italic", "Segoe UI", cursive, sans-serif;
 
-  /* Schriftart */
-  --bs-body-font-family: sans-serif;
-
-  /* Ränder */
-  --bs-border-color: #dee2e6;
+  /* ===============================
+     BORDERS & COMPONENTS
+     =============================== */
+  --bs-border-color: rgba(0, 0, 0, 0.08);
   --bs-border-width: 0.1em;
 
-  /* Komponenten */
-  --bs-navbar-bg: var(--bs-primary);
-  --bs-navbar-color: var(--text-on-dark);
+  --bs-navbar-bg: var(--nebula-pink);
+  --bs-navbar-color: var(--warm-grey-80);
 }
 body {
   min-height: 100vh;
